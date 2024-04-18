@@ -5,7 +5,7 @@
   "homepage": "https://sajnogmikolaj.github.io/goit-hw-8",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-hw-8/"
+    "build": "parcel build src/*.html --public-url /goit-hw-8"
   },
   "repository": {
     "type": "git",
