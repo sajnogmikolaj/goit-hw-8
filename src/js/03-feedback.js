@@ -1,29 +1,38 @@
-import throttle from 'lodash.throttle';
+import throttle from 'lodash/throttle';
 const form = document.querySelector('form.feedback-form');
 const email = form.elements.email;
 const message = form.elements.message;
 const INPUT_STORAGE_KEY = 'already-written'
+const btn = document.getElementById('button')
 
-
-
-email.value = localStorage.setItem('feedback-form-state', email);
-message.value = localStorage.setItem('feedback-form-state', text);
-form.onchange = function () {
-    const key = form.value;
-    localStorage.setItem('key', key)
-    form.value = localStorage.getItem("key")
+function saveLocal() {
+    const emailValue = email.value;
+    const textValue = message.value;
+    localStorage.setItem('key1', emailValue);
+    localStorage.setItem('key2', textValue)
 }
-// throttle(data => {
-//     localStorage.setItem(INPUT_STORAGE_KEY, text);
-//   }, 1000)
-//     ;
 
 
-// throttle(data) =>{
-//  getValue() {
-//     let emailValue = document.getElementById('email').value;
-//     let messageValue = document.getElementById('text').value;
-//     localStorage.setItem(emailValue, email);
-//     localStorage.setItem(messageValue, message);
-// }
-// } 1000
+const throttledSaveLocal = throttle(saveLocal, 500);
+form.addEventListener("input", throttledSaveLocal)
+
+function printValue() {
+    console.log(email.value);
+    console.log(message.value);
+    localStorage.removeItem('key1');
+    localStorage.removeItem('key2');l
+}
+
+btn.addEventListener("click", printValue);
+
+
+function getLocal() {
+    const localValue =localStorage.getItem('key1');
+    const localValue1 = localStorage.getItem('key2');
+    let email.value = localValue;
+    let message.value = localValue1;
+    
+}
+
+const throttledGetLocal = throttle(getLocal, 600);
+window.addEventListener("load", throttledGetLocal);
